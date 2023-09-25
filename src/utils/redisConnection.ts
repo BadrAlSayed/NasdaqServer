@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const client = redis.createClient({
-  url: 'redis://localhost:6379'
+  url: process.env.REDIS_URL
 })
 
 const connect = async (): Promise<void> => {

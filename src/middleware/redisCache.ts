@@ -11,10 +11,8 @@ const redisMiddleware = async (
     const redis = redisConnection.client
     const cachedData = await redis.get(`tickers${ticker}`)
     if (cachedData !== null) {
-      console.log('cached data')
       res.send(JSON.parse(cachedData))
     } else {
-      console.log('what')
       next()
     }
   } catch (error) {
