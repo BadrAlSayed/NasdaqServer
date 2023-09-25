@@ -4,7 +4,7 @@ import redisConnection from '../utils/redisConnection.js'
 
 const getAllTickers = async (req: Request, res: Response) => {
   rest.reference
-    .tickers({ exchange: 'XNAS', market: 'stocks' })
+    .tickers({ exchange: 'XNAS', market: 'stocks', limit: 50 })
     .then((data) => {
       res.json(data)
     })
@@ -43,7 +43,7 @@ const getSearchedTickers = async (req: Request, res: Response) => {
   const { ticker } = req.params
 
   rest.reference
-    .tickers({ exchange: 'XNAS', search: ticker })
+    .tickers({ exchange: 'XNAS', market: 'stocks', limit: 50, search: ticker })
     .then((data) => {
       redisConnection.client.setEx(`tickers${ticker}`, 60, JSON.stringify(data))
       res.json(data)
