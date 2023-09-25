@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express'
 
 import cors from 'cors'
-// import redisConnection from './utils/redisConnection'
+import redisConnection from './utils/redisConnection.js'
 import tickers from './routes/tickers.js'
 
 const app = express()
@@ -12,7 +12,7 @@ app.use(express.json())
 
 app.use('/tickers', tickers)
 
-// redisConnection.connect()
+redisConnection.connect()
 app.listen(port, () => {
   console.log(`Listening to requests on http://localhost:${port}`)
 })
